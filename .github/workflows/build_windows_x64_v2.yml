@@ -10,7 +10,7 @@ jobs:
             # clone x264
             - name: Clone x264 Repository
               run: |
-                  git clone -b 0.164.r3101 --depth=1 https://github.com/ShiftMediaProject/x264.git ./source/x264
+                  git clone -b 0.164.r3107 --depth=1 https://github.com/ShiftMediaProject/x264.git ./source/x264
             - name: Get Git Tag
               working-directory: ./source/x264
               run: |
@@ -64,7 +64,7 @@ jobs:
             # clone ffmpeg
             - name: Clone FFmpeg Repository
               run: |
-                  git clone -b release/5.1 --depth=1 https://git.ffmpeg.org/ffmpeg.git ./source/ffmpeg
+                  git clone -b release/6.1 --depth=1 https://git.ffmpeg.org/ffmpeg.git ./source/ffmpeg
             - name: Get Git Tag
               working-directory: ./source/ffmpeg
               run: |
