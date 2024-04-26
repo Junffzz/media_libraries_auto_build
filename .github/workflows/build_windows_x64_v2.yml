@@ -68,7 +68,7 @@ jobs:
             - name: Get Git Tag
               working-directory: ./source/ffmpeg
               run: |
-                  echo "NV_GIT_TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+                  echo "FFMPEG_GIT_TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
             # clone and install vsnasm
             - name: Clone vsnasm Repository
@@ -149,8 +149,6 @@ jobs:
               working-directory: ./source
               run: |
                   Start-Process -Wait -FilePath ".\project_generate.exe" -PassThru -NoNewWindow -ArgumentList `
-                  "--pkg-config=pkg-config", `
-                  "--disable-all", `
                   "--disable-autodetect", `
                   "--enable-dxva2", `
                   "--enable-d3d11va", `
