@@ -68,12 +68,12 @@ jobs:
             - name: Get Git Tag
               working-directory: ./source/ffmpeg
               run: |
-                  echo "NV_GIT_TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+                  echo "FFMPEG_GIT_TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
             # clone and install vsnasm
             - name: Clone vsnasm Repository
               run: |
-                  git clone -b 0.8 https://github.com/ShiftMediaProject/VSNASM.git ./vsnasm
+                  git clone -b 0.9 https://github.com/ShiftMediaProject/VSNASM.git ./vsnasm
             - name: Setup Env
               run: |
                   echo "CI=Local" >> $GITHUB_ENV
@@ -86,12 +86,13 @@ jobs:
             - name: Download FFVS-Project-Generator
               uses: robinraju/release-downloader@v1.6
               with:
+                  # https://github.com/ShiftMediaProject/FFVS-Project-Generator
                   repository: "ShiftMediaProject/FFVS-Project-Generator"
-                  tag: "1.11.5"
-                  fileName: "FFVS-Project-Generator_1.11.5_x64.zip"
+                  tag: "1.11.9"
+                  fileName: "FFVS-Project-Generator_1.11.9_x64.zip"
             - name: Unzip FFVS-Project-Generator
               run: |
-                  7z x FFVS-Project-Generator_1.11.5_x64.zip
+                  7z x FFVS-Project-Generator_1.11.9_x64.zip
             - name: Copy to source
               run: |
                   Copy-Item -Path "${{github.workspace}}\project_generate.exe" -Destination "${{github.workspace}}\source\project_generate.exe" -Force
@@ -101,7 +102,7 @@ jobs:
               run: |
                   Copy-Item -Path "${{github.workspace}}\source\nv-codec-headers\include" -Recurse -Destination "${{github.workspace}}\msvc\include" -Force
 
-            # copy nvcodec headers to source\include
+            # copy amf headers to source\include
             - name: Copy amf headers
               run: |
                   Copy-Item -Path "${{github.workspace}}\source\AMF\amf\public\include" -Recurse -Destination "${{github.workspace}}\msvc\include\AMF" -Force
@@ -145,6 +146,7 @@ jobs:
               run: |
                   $proc = Start-Process -FilePath "MSBuild.exe" -PassThru -NoNewWindow -ArgumentList "-t:ReBuild", "-nodeReuse:false", "-p:Configuration=Release", "-p:Platform=x64", "-p:PlatformToolset=v143", "${{github.workspace}}\source\mfx_dispatch\SMP\libmfx.vcxproj"
                   Wait-Process -InputObject $proc
+            #生成ffmpeg项目
             - name: Generate FFmpeg VS Project
               working-directory: ./source
               run: |
@@ -190,6 +192,7 @@ jobs:
                   "--enable-hwaccel=h264_d3d11va", `
                   "--enable-hwaccel=h264_d3d11va2", `
                   "--enable-hwaccel=h264_dxva2" `
+            # compile ffmpeg
             - name: Compile FFmpeg
               run: |
                   $proc = Start-Process -FilePath "MSBuild.exe" -PassThru -NoNewWindow -ArgumentList "-t:ReBuild", "-nodeReuse:false", "-p:Configuration=Release", "-p:Platform=x64", "-p:PlatformToolset=v143", "${{github.workspace}}\source\ffmpeg\SMP\ffmpeg.sln"
@@ -200,6 +203,6 @@ jobs:
             - name: Release
               uses: ncipollo/release-action@v1
               with:
-                  artifacts: "artifacts_windows_x64.zip"
+                  artifacts: "artifacts_windows_x64_v2.zip"
                   tag: "latest"
                   allowUpdates: true
