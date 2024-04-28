@@ -37,7 +37,7 @@ jobs:
             # clone amf
             - name: Clone amf Repository
               run: |
-                  git clone -b v1.4.26 https://github.com/GPUOpen-LibrariesAndSDKs/AMF.git ./source/amf
+                  git clone -b v1.4.33 https://github.com/GPUOpen-LibrariesAndSDKs/AMF.git ./source/amf
             - name: Get Git Tag
               working-directory: ./source/amf
               run: |
