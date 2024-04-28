@@ -153,6 +153,7 @@ jobs:
                   Start-Process -Wait -FilePath ".\project_generate.exe" -PassThru -NoNewWindow -ArgumentList `
                   "--disable-all", `
                   "--disable-autodetect", `
+                  "--enable-static", `
                   "--enable-dxva2", `
                   "--enable-d3d11va", `
                   "--enable-cuvid", `
