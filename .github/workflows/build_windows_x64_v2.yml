@@ -84,7 +84,7 @@ jobs:
 
             # setup ffvs-project-generator
             - name: Download FFVS-Project-Generator
-              uses: robinraju/release-downloader@v1.6
+              uses: robinraju/release-downloader@v1.10
               with:
                   # https://github.com/ShiftMediaProject/FFVS-Project-Generator
                   repository: "ShiftMediaProject/FFVS-Project-Generator"
@@ -108,7 +108,7 @@ jobs:
                   Copy-Item -Path "${{github.workspace}}\source\AMF\amf\public\include" -Recurse -Destination "${{github.workspace}}\msvc\include\AMF" -Force
 
             - name: Setup MSBuild
-              uses: microsoft/setup-msbuild@v1.1
+              uses: microsoft/setup-msbuild@v1.3.3
 
             # compile x264
             - name: Upgrade x264 project
@@ -199,7 +199,7 @@ jobs:
                   Wait-Process -InputObject $proc
             - name: Zip Assets
               run: |
-                  7z a artifacts_windows_x64.zip ${{github.workspace}}\msvc\*
+                  7z a artifacts_windows_x64_v2.zip ${{github.workspace}}\msvc\*
             - name: Release
               uses: ncipollo/release-action@v1
               with:
