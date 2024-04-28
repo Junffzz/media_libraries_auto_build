@@ -55,7 +55,7 @@ jobs:
             # clone nv-codec-headers
             - name: Clone nvcodec Repository
               run: |
-                  git clone -b n11.1.5.2 https://github.com/FFmpeg/nv-codec-headers.git ./source/nv-codec-headers
+                  git clone -b n12.2.72.0 https://github.com/FFmpeg/nv-codec-headers.git ./source/nv-codec-headers
             - name: Get Git Tag
               working-directory: ./source/nv-codec-headers
               run: |
@@ -156,7 +156,6 @@ jobs:
                   "--enable-hwaccels",`
                   "--enable-dxva2", `
                   "--enable-d3d11va", `
-                  "--enable-cuda",`
                   "--enable-cuvid", `
                   "--enable-amf", `
                   "--enable-libmfx", `
@@ -186,7 +185,6 @@ jobs:
                   "--disable-network", `
                   "--enable-nvenc", `
                   "--enable-nvdec", `
-                  "--enable-cuda-sdk",`
                   "--enable-encoder=h264_amf", `
                   "--enable-encoder=h264_qsv", `
                   "--enable-encoder=h264_nvenc", `
