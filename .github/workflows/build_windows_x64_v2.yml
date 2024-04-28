@@ -153,7 +153,6 @@ jobs:
                   Start-Process -Wait -FilePath ".\project_generate.exe" -PassThru -NoNewWindow -ArgumentList `
                   "--disable-all", `
                   "--disable-autodetect", `
-                  "--enable-static", `
                   "--enable-dxva2", `
                   "--enable-d3d11va", `
                   "--enable-cuvid", `
@@ -163,11 +162,11 @@ jobs:
                   "--enable-w32threads", `
                   "--enable-gpl", `
                   "--enable-version3", `
-                  "--enable-libavutil", `
-                  "--enable-libavdevice", `
-                  "--enable-libavcodec", `
-                  "--enable-libavformat", `
-                  "--enable-libswresample", `
+                  "--enable-avutil", `
+                  "--enable-avdevice", `
+                  "--enable-avcodec", `
+                  "--enable-avformat", `
+                  "--enable-swresample", `
                   "--enable-libx264", `
                   "--enable-libx265", `
                   "--enable-libopus", `
