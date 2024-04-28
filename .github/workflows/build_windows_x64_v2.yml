@@ -189,7 +189,6 @@ jobs:
                   "--enable-encoder=h264_nvenc", `
                   "--enable-decoder=h264_cuvid", `
                   "--enable-decoder=h264_qsv", `
-                  "--enable-hwaccel=h264_d3d11va", `
                   "--enable-hwaccel=h264_d3d11va2", `
                   "--enable-hwaccel=h264_dxva2" `
             # compile ffmpeg
