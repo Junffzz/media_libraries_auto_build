@@ -153,8 +153,10 @@ jobs:
                   Start-Process -Wait -FilePath ".\project_generate.exe" -PassThru -NoNewWindow -ArgumentList `
                   "--disable-all", `
                   "--disable-autodetect", `
+                  "--enable-hwaccels",`
                   "--enable-dxva2", `
                   "--enable-d3d11va", `
+                  "--enable-cuda",`
                   "--enable-cuvid", `
                   "--enable-amf", `
                   "--enable-libmfx", `
@@ -184,6 +186,7 @@ jobs:
                   "--disable-network", `
                   "--enable-nvenc", `
                   "--enable-nvdec", `
+                  "--enable-cuda-sdk",`
                   "--enable-encoder=h264_amf", `
                   "--enable-encoder=h264_qsv", `
                   "--enable-encoder=h264_nvenc", `
